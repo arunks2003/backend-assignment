@@ -165,10 +165,10 @@ export const userController = async (req, res) => {
   }
 };
 
-export const fetchAllUserController = (req, res) => {
+export const fetchAllUserController = async (req, res) => {
   const select_query = `SELECT * FROM users`;
 
-  con.query(select_query, (err, result) => {
+  await con.query(select_query, (err, result) => {
     if (err) {
       console.error("Error executing query", err.stack);
       return res.status(500).json({ error: "Database error" });
@@ -176,7 +176,7 @@ export const fetchAllUserController = (req, res) => {
       return res.status(404).json({ error: "User not found" });
     } else {
       console.log("User fetched successfully", result.rows[0]);
-      return res.status(200).json({ user: result.rows[0] });
+      return res.status(200).send({ user: result.rows[0] });
     }
   });
 };

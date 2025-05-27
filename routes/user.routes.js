@@ -11,7 +11,7 @@ const router = Router();
 /****************************************************/
 router.route("/identify").post(userController);
 /****************************************************/
-router.route("/getAll").get(fetchAllUserController);
+router.route("/").get(fetchAllUserController);
 router.route("/getById/:id").get(fetchUserByIdController);
 router.route("/deleteByEmail/:email").delete(deleteUserByEmailController);
 
